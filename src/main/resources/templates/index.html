@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Dishes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h2 align="center">Food Dishes</h2>
+    <a th:href="@{/addmessage}"><h4>Add Food Dish</h4></a>
+    <table class="table table-bordered">
+        <thead>
+        <tr class="success">
+            <th>Dish Image</th>
+            <th>Vote Tasty</th>
+            <th>Number of Likes</th>
+            <th>Vote Nasty</th>
+            <th>Number of Dislikes</th>
+
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="info" th:each="eachRecipi:${messagelist}">
+
+            <td class="list-group-item image-wrapper"  th:if="${eachRecipi.url} != null">
+                <a th:href="${eachRecipi.image}" target="_blank" ><img height="150px;" width="150px;" id="post-image" th:src="@{${eachRecipi.url}}"/></a>
+            </td>
+            <td> <a th:href="@{/redirect/{id}(id=${eachRecipi.id})}" >Tasty</a> </td>
+            <td th:text="${eachRecipi.getLikeCount()}"> </td>
+            <td> <a th:href="@{/redirectdis/{id}(id=${eachRecipi.id})}">Nasty</a> </td>
+            <td th:text="${eachRecipi.getDislikeCount()}"> </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

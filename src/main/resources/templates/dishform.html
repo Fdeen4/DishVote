@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dish Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button3 {width: 250px;}
+    </style>
+</head>
+<body>
+<form th:action="@{/savemessage}" th:object="${aMessage}" method="post">
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="jumbotron text-sm-center">
+        <h1>Tasty or Nasty</h1><br/>
+            </div>
+        </div>
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+          <h2> Image Name:</h2> <input type="text" th:field="*{image}" class="form-control" row="2">
+            <span th:if="${#fields.hasErrors('image')}"
+                  th:errors="*{image}"></span>
+        </div>
+        <div class="form-group">
+           <h2> Image Url:</h2><input type="text" th:field="*{url}" class="form-control" row="2">
+        </div>
+
+        <button class="button button3" ><h5 align="center">Done</h5></button>
+
+    </div>
+
+
+
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
