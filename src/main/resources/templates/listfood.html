@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">
+
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <h1 class="text-center">
+        <span class="h1 tastytext">Tasty <i class="fa fathumbs-up greentext" aria-hidden="true"></i></span>
+        <span class="h1 nastytext">Nasty <i class="fa fathumbs-down redtext" aria-hidden="true"></i></span>
+    </h1>
+</div>
+
+<div class="container">
+    <div class="row text-left"
+         th:each="eachDish:${dishes}">
+        <div class="row">
+            <div class="col-4">
+                <img th:src="${eachDish.imageurl}">
+
+            </div>
+            <div class="row col-2">
+                <div class="col tastytext text-left">
+                    <span th:if="${#lists.size(eachDish.tastyVotes)>#lists.size(eachDish.nastyVotes)}">Tasty!<span><br>
+                        <a class="faa-parent animated-hover" th:href="@{/tastyvote/(id=$(eachDish.if})}"><i
+                                class="fa fathumbs-up faa-tada faa-fast greentext" aria-hidden="true"
+                                th:text="${#list.size(eachDish.tastyVotes)}">10</i></a>
+                </div> <br>
+                <div class="col nastytext text-left">
+                    <span th:if="${#lists.size(eachDish.nastyVotes)>#list.size(eachDish.tastyVotes)}">Nasty!</span> <br>
+                    <a class="faa-parent animated-hover" th:href="@{/nastyvote/(id=${eachDish.id})}"><i
+                            class="fa fathumbs-down faa-tada faa-fast redtext"aria-hidden="true"
+                            th:text="${#lists.size(eachDish.nastyVotes)}">3</i></a><br>
+                </div> <br>
+            </div>
+            <div class="col" th:switch="${eachDish.last5minutes}"><span th:case="'undefined'">Not enough votes in the last 5 minutes <br></span>
+                <span th:case="'tasty'" class="coltastytext text-left">Tasty<br></span>
+                <span th:case="'nasty'" class="colnastytext text-left">Nasty<br></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+</body>
+</html>
